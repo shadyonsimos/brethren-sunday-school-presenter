@@ -86,11 +86,13 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
 .verse .back{position:absolute;top:12px;left:14px;background:var(--hi);color:#111;font-weight:800;font-size:12px;padding:2px 10px;border-radius:9px;border:2px solid #111}
 .verse .vt{font-family:N,serif;font-size:26px;line-height:2;text-align:center}
 .verse .vr{color:#ffd86b;font-size:14px;margin-top:8px;font-weight:700}
-.proj{position:absolute;left:22px;bottom:22px;width:330px;opacity:0;transform:translateY(20px) scale(.9);transition:.5s}
+.proj{position:absolute;left:150px;top:96px;width:360px;opacity:0;transform:translateY(20px) scale(.9);transition:.5s;z-index:6}
+.dim{position:absolute;left:14px;top:58px;width:618px;height:470px;border-radius:14px;background:#0b1a2acc;opacity:0;transition:.4s;z-index:5}
+.dim.on{opacity:1}
 .proj.on{opacity:1;transform:none}
-.proj .scr{height:186px;border:7px solid #222;border-radius:10px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:17px;line-height:1.7;position:relative;overflow:hidden}
+.proj .scr{height:200px;box-shadow:0 10px 30px #0006;border:7px solid #222;border-radius:10px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;font-size:17px;line-height:1.7;position:relative;overflow:hidden}
 .proj .leg{width:60px;height:16px;background:#222;margin:0 auto;border-radius:0 0 6px 6px}
-.proj .cap{font-size:12px;font-weight:700;color:#444;text-align:center;margin-top:2px}
+.proj .cap{font-size:13px;font-weight:700;color:#fff;text-align:center;margin-top:2px}
 .cursor{position:absolute;width:22px;height:22px;top:0;left:0;z-index:20;transition:transform .7s cubic-bezier(.4,.1,.2,1);pointer-events:none;overflow:visible}
 .ring{position:absolute;width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;background:#ffff00aa;z-index:19;pointer-events:none;opacity:0}
 .ring.go{animation:ck .45s ease-out}
@@ -130,6 +132,7 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
     </div>
    </div>
   </div>
+  <div class="dim" id="dim"></div>
   <div class="proj" id="proj"><div class="scr">محبة عجيبة محبة الله<br>ظهرت لينا أحنا الخطاة</div><div class="leg"></div><div class="cap">شاشة البروجكتور</div></div>
   <div class="ring" id="ring"></div>
   <svg class="cursor" id="cur" viewBox="0 0 24 24"><path d="M3 2l7 19 2.6-7.4L20 11z" fill="#111" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
@@ -204,7 +207,7 @@ function results(list, hl) {
   [...$('res').children].forEach((e, i) => setTimeout(() => e.classList.add('on'), 90 * i));
 }
 function reset() {
-  clearQ(); $('hy').classList.remove('on'); $('empty').style.opacity = 1; $('verse').classList.remove('on'); $('proj').classList.remove('on');
+  clearQ(); $('hy').classList.remove('on'); $('empty').style.opacity = 1; $('verse').classList.remove('on'); $('proj').classList.remove('on'); $('dim').classList.remove('on');
   $('c1').classList.remove('pulse'); $('story').classList.remove('pulse');
 }
 async function loop() {
@@ -225,7 +228,7 @@ async function loop() {
     await click($('story'), 0.12, 0.25); $('story').classList.remove('pulse'); $('verse').classList.add('on');
     cap('الكتاب المقدس <b>مشكّل</b>'); await wait(2400);
     $('verse').classList.remove('on'); await wait(400);
-    cap('دوس على الشريحة… تطلع على <b>البروجكتور</b>'); await click($('s1')); $('proj').classList.add('on'); await wait(2800);
+    cap('دوس على الشريحة… تطلع على <b>البروجكتور</b>'); await click($('s1')); $('dim').classList.add('on'); $('proj').classList.add('on'); await wait(2800);
   }
 }
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) loop();
