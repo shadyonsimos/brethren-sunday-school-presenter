@@ -176,7 +176,7 @@ fetch('https://api.github.com/repos/shadyonsimos/brethren-sunday-school-presente
    const b = A.find(x => /Win7-Setup-[\d.]+\.exe$/.test(x.name));
    if (a) document.getElementById('dl').href = a.browser_download_url;
    if (b) document.getElementById('dl7').href = b.browser_download_url; else document.getElementById('dl7').style.display = 'none';
-   if (r.tag_name) document.getElementById('ver').textContent = 'النسخة ' + r.tag_name.replace(/^v/, '').replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) + ' · ٨٠ ميجا تقريبًا';
+   if (r.tag_name) document.getElementById('ver').innerHTML = 'النسخة <bdi dir="ltr">' + r.tag_name.replace(/^v/, '').replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) + '</bdi> — حجمها حوالي ٨٠ ميجا';
  }).catch(() => {});
 
 // ---- demo: the 960x540 stage is scaled to the box ----
