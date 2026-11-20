@@ -64,7 +64,7 @@
       }
     ],
     "releaseInfo": {
-      "releaseNotes": "<div dir=\"rtl\">\n\n## Brethren Sunday School Presenter\n\nبرنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.\n\n**للتسطيب:** نزّل أول ملف تحت — اسمه بيبدأ بـ <code>Brethren-Sunday-School-Presenter-Setup</code> — وشغّله.\n\nلو ظهرت شاشة زرقا: دوس <bdi><b>More info</b></bdi> وبعدين <bdi><b>Run anyway</b></bdi>.\n\n📄 طريقة التسطيب بالصور: [<bdi>How-to-Install.pdf</bdi>](https://github.com/shadyonsimos/brethren-sunday-school-presenter/raw/main/How-to-Install.pdf)\n\nلو البرنامج متسطّب عندك، هيتحدّث لوحده.\n\n</div>"
+      "releaseNotes": "<div dir=\"rtl\">\n\n## Brethren Sunday School Presenter - ترانيم مدارس الأحد\n\nبرنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.\n\n**للتسطيب:** نزّل أول ملف تحت — اسمه بيبدأ بـ <code>Brethren-Sunday-School-Presenter-Setup</code> — وشغّله.\n\nلو ظهرت شاشة زرقا: دوس <bdi><b>More info</b></bdi> وبعدين <bdi><b>Run anyway</b></bdi>.\n\n📄 طريقة التسطيب بالصور: [<bdi>How-to-Install.pdf</bdi>](https://github.com/shadyonsimos/brethren-sunday-school-presenter/raw/main/How-to-Install.pdf)\n\nلو البرنامج متسطّب عندك، هيتحدّث لوحده.\n\n</div>"
     }
   },
   "dependencies": {
