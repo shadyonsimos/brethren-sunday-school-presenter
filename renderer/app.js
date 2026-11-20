@@ -79,7 +79,9 @@ function loadHymn(num, cueIdx) {
   st.back = null;
   st.cur = { kind: 'hymn', num }; st.slides = hymnSlides(num);
   const tp = hymnTopics(num);
-  $('curTitle').innerHTML = `<span class="hl">${esc(hName(num))}</span>` + (tp.length ? `<small class="tps">${tp.map(esc).join(' · ')}</small>` : '');
+  const ti = (window.TOPICS || []).map((t, i) => t.nums.includes(num) ? i : -1).filter(i => i >= 0);
+  $('curTitle').innerHTML = `<span class="hl">${esc(hName(num))}</span>` + (ti.length ? `<small class="tps">${ti.map(i => `<a class="tpl" data-ti="${i}" title="افتح الموضوع ده">${esc(window.TOPICS[i].name)}</a>`).join(' · ')}</small>` : '');
+  $('curTitle').querySelectorAll('.tpl').forEach(a => a.onclick = e => { e.stopPropagation(); openTopic(+a.dataset.ti); });
   showStory(num);
   renderSlides(); setCue(cueIdx || 0);
 }
@@ -334,6 +336,8 @@ function showTopics(open) {
     item('', t.name, arD(t.nums.length) + ' ترنيمة', () => { $('results').innerHTML = ''; showTopics(i); });
   });
 }
+// a topic name under the hymn title is a link: opens that topic in the topics tab
+function openTopic(i) { setTab('topics'); $('results').innerHTML = ''; showTopics(i); }
 // the topics a hymn belongs to (shown under its title)
 function hymnTopics(num) { return (window.TOPICS || []).filter(t => t.nums.includes(num)).map(t => t.name); }
 function setTab(t) {
