@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Brethren Sunday School Presenter - ترانيم مدارس الأحد</title>
-<meta name="description" content="برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور — Windows">
+<title>ترانيم مدارس الأحد</title>
+<meta name="description" content="برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور — لويندوز">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Brethren Sunday School Presenter - ترانيم مدارس الأحد">
+<meta property="og:title" content="ترانيم مدارس الأحد">
 <meta property="og:description" content="برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور — نزّل آخر نسخة لويندوز">
 <meta property="og:image" content="https://shadyonsimos.github.io/brethren-sunday-school-presenter/preview.png">
 <meta property="og:image:width" content="1280">
@@ -110,7 +110,7 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
  <div class="stage" id="stage">
   <div class="bar">
    <div class="btns"><span class="btn k">فتح شاشة العرض</span><span class="btn">الشكل والخط</span><span class="btn y">قصة مقترحة</span></div>
-   <div class="brand">Brethren Sunday School Presenter<small>ترانيم مدارس الأحد</small></div>
+   <div class="brand" style="direction:rtl">ترانيم مدارس الأحد</div>
   </div>
   <div class="cols">
    <div class="panel list">
@@ -145,7 +145,7 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
 
 <div class="mcap" id="mcap">ترانيم مدارس الأحد</div>
 
-<h1>Brethren Sunday School Presenter<small>ترانيم مدارس الأحد</small></h1>
+<h1>ترانيم مدارس الأحد</h1>
 <p>برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.</p>
 
 <a class="dl" id="dl" href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/releases/latest">⬇️ نزّل لـ ويندوز ١٠ و ١١</a>
@@ -162,8 +162,8 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
 </div>
 
 <div class="box">
-<p>بعد ما الملف يخلص تحميل افتحه. لو ظهرت شاشة زرقا: دوس <bdi>More info</bdi> وبعدين <bdi>Run anyway</bdi> (أول مرة بس).</p>
-<p>📄 <a href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/raw/main/How-to-Install.pdf">طريقة التسطيب بالصور (PDF)</a></p>
+<p>بعد ما الملف يخلص تحميل افتحه. لو ظهرت شاشة زرقا: دوس على الكلام الصغير اللي تحت الجملة الأولى (<bdi>More info</bdi>)، وبعدين الزرار اللي هيظهر (<bdi>Run anyway</bdi>). ده أول مرة بس.</p>
+<p>📄 <a href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/raw/main/How-to-Install.pdf">طريقة التسطيب بالصور (ملف)</a></p>
 <p>البرنامج بيحدّث نفسه لوحده لما تنزل نسخة جديدة.</p>
 </div>
 </div>
@@ -176,7 +176,7 @@ fetch('https://api.github.com/repos/shadyonsimos/brethren-sunday-school-presente
    const b = A.find(x => /Win7-Setup-[\d.]+\.exe$/.test(x.name));
    if (a) document.getElementById('dl').href = a.browser_download_url;
    if (b) document.getElementById('dl7').href = b.browser_download_url; else document.getElementById('dl7').style.display = 'none';
-   if (r.tag_name) document.getElementById('ver').textContent = 'النسخة ' + r.tag_name.replace(/^v/, '') + ' · ٨٠ ميجا تقريبًا';
+   if (r.tag_name) document.getElementById('ver').textContent = 'النسخة ' + r.tag_name.replace(/^v/, '').replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]) + ' · ٨٠ ميجا تقريبًا';
  }).catch(() => {});
 
 // ---- demo: the 960x540 stage is scaled to the box ----
