@@ -23,6 +23,7 @@ h1{font-size:26px;margin:22px 0 4px}
 p{font-size:17px;line-height:1.7;margin:6px 0}
 .dl{display:inline-block;margin:18px 0 6px;background:#ffff00;color:#111;font-weight:800;font-size:22px;padding:14px 34px;border-radius:14px;border:3px solid #111;text-decoration:none}
 .ver{font-size:14px;color:#666}
+.dl7{display:inline-block;margin-top:12px;font-size:15px;font-weight:700;color:#1f6fc5;border:2px solid #1f6fc5;border-radius:10px;padding:7px 16px;text-decoration:none;background:#fff}
 .box{background:#fff;border:2px dashed #bbb;border-radius:14px;padding:12px 16px;margin-top:20px;text-align:right}
 .box a{color:#1f6fc5}
 bdi{font-weight:700}
@@ -32,8 +33,9 @@ bdi{font-weight:700}
 <img class="hero" src="preview.png" alt="Brethren Sunday School Presenter">
 <h1>Brethren Sunday School Presenter<br>ترانيم مدارس الأحد</h1>
 <p>برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.</p>
-<a class="dl" id="dl" href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/releases/latest">⬇️ نزّل آخر نسخة لويندوز</a>
+<a class="dl" id="dl" href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/releases/latest">⬇️ نزّل لـ Windows 10 / 11</a>
 <div class="ver" id="ver">&nbsp;</div>
+<a class="dl7" id="dl7" href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/releases/latest">⬇️ عندك Windows 7 أو 8؟ نزّل من هنا (32 و 64)</a>
 <div class="box">
 <p>بعد ما الملف يخلص تحميل افتحه. لو ظهرت شاشة زرقا: دوس <bdi>More info</bdi> وبعدين <bdi>Run anyway</bdi> (أول مرة بس).</p>
 <p>📄 <a href="https://github.com/shadyonsimos/brethren-sunday-school-presenter/raw/main/How-to-Install.pdf">طريقة التسطيب بالصور (PDF)</a></p>
@@ -44,8 +46,11 @@ bdi{font-weight:700}
 // point the button straight at the newest installer
 fetch('https://api.github.com/repos/shadyonsimos/brethren-sunday-school-presenter/releases/latest')
  .then(r => r.json()).then(r => {
-   const a = (r.assets || []).find(x => /Setup-[\d.]+\.exe$/.test(x.name));
-   if (a) { document.getElementById('dl').href = a.browser_download_url; }
+   const A = r.assets || [];
+   const a = A.find(x => /^Brethren-Sunday-School-Presenter-Setup-[\d.]+\.exe$/.test(x.name));
+   const b = A.find(x => /Win7-Setup-[\d.]+\.exe$/.test(x.name));
+   if (a) document.getElementById('dl').href = a.browser_download_url;
+   if (b) document.getElementById('dl7').href = b.browser_download_url; else document.getElementById('dl7').style.display = 'none';
    if (r.tag_name) document.getElementById('ver').textContent = 'النسخة ' + r.tag_name.replace(/^v/, '') + ' · ٨٠ ميجا تقريبًا';
  }).catch(() => {});
 </script>

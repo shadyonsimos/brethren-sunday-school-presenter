@@ -1,7 +1,7 @@
 {
   "name": "brethren-sunday-school-presenter",
   "productName": "Brethren Sunday School Presenter",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Brethren Sunday School Presenter - hymns and Bible for Sunday school",
   "main": "main.js",
   "author": "Ovia Media Production",
@@ -62,10 +62,7 @@
         "repo": "brethren-sunday-school-presenter",
         "releaseType": "release"
       }
-    ],
-    "releaseInfo": {
-      "releaseNotes": "<div dir=\"rtl\">\n\n## Brethren Sunday School Presenter - ترانيم مدارس الأحد\n\nبرنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.\n\n**الجديد:** شلنا النسخ المكررة من الترانيم، واسم الموضوع تحت الترنيمة بقى بيفتح الموضوع.\n\n**للتسطيب:** نزّل أول ملف تحت — اسمه بيبدأ بـ <code>Brethren-Sunday-School-Presenter-Setup</code> — وشغّله.\n\nلو ظهرت شاشة زرقا: دوس <bdi><b>More info</b></bdi> وبعدين <bdi><b>Run anyway</b></bdi>.\n\n📄 طريقة التسطيب بالصور: [<bdi>How-to-Install.pdf</bdi>](https://github.com/shadyonsimos/brethren-sunday-school-presenter/raw/main/How-to-Install.pdf)\n\nلو البرنامج متسطّب عندك، هيتحدّث لوحده.\n\n</div>"
-    }
+    ]
   },
   "dependencies": {
     "electron-updater": "^6.8.11"

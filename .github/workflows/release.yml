@@ -1,7 +1,5 @@
 name: Build Windows release
 on:
-  push:
-    tags: ['v*']
   workflow_dispatch:
 permissions:
   contents: write
@@ -14,6 +12,16 @@ jobs:
         with:
           node-version: 20
       - run: npm install
-      - run: npx electron-builder --win nsis --x64 --publish always
+      # Windows 10 / 11 (Electron 33, 64-bit) -> latest.yml
+      - run: npx electron-builder --win nsis --x64 --publish never
+      # Windows 7 / 8 (Electron 22, 32 + 64-bit in one installer) -> win7.yml
+      - run: npx electron-builder --win nsis --ia32 --x64 --publish never --config build/legacy.js
+      - name: Publish the release
+        shell: bash
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          V=$(node -p "require('./package.json').version")
+          sed "s/{V}/$V/g" build/release-notes.md > notes.md
+          ls dist dist-legacy
+          gh release create "v$V" dist/*.exe dist/*.blockmap dist/latest.yml dist-legacy/*.exe dist-legacy/*.blockmap dist-legacy/win7.yml How-to-Install.pdf --title "Brethren Sunday School Presenter - ترانيم مدارس الأحد $V" --notes-file notes.md

@@ -18,7 +18,18 @@ function logLine(msg) {
   } catch (e) {}
 }
 
+const LEGACY = parseInt(process.versions.electron, 10) < 25;   // Windows 7/8 build runs on Electron 22 (no protocol.handle)
+function serveLegacy() {
+  const MIME = { '.js': 'text/javascript', '.mjs': 'text/javascript', '.html': 'text/html', '.css': 'text/css', '.json': 'application/json', '.png': 'image/png', '.svg': 'image/svg+xml', '.ttf': 'font/ttf', '.otf': 'font/otf', '.woff2': 'font/woff2', '.wasm': 'application/wasm' };
+  protocol.registerFileProtocol('bp', (req, cb) => {
+    const u = new URL(req.url);
+    const file = path.normalize(path.join(RENDERER, decodeURIComponent(u.pathname)));
+    if (!file.startsWith(RENDERER) || !fs.existsSync(file)) return cb({ error: -6 });
+    cb({ path: file, mimeType: MIME[path.extname(file).toLowerCase()] || 'application/octet-stream', headers: { 'Cross-Origin-Opener-Policy': 'same-origin', 'Cross-Origin-Embedder-Policy': 'require-corp', 'Cross-Origin-Resource-Policy': 'same-origin' } });
+  });
+}
 function serve() {
+  if (LEGACY || !protocol.handle) return serveLegacy();
   protocol.handle('bp', async req => {
     const u = new URL(req.url);
     const root = RENDERER;
@@ -98,6 +109,7 @@ function startUpdates() {
   if (!app.isPackaged || process.platform !== 'win32') return;
   let autoUpdater;
   try { ({ autoUpdater } = require('electron-updater')); } catch (e) { logLine('UPDATE no updater ' + e.message); return; }
+  if (LEGACY) { autoUpdater.channel = 'win7'; autoUpdater.allowDowngrade = false; }   // Windows 7/8 copies only take Windows 7/8 updates (win7.yml)
   autoUpdater.autoDownload = true;
   autoUpdater.autoInstallOnAppQuit = true;            // the new version is installed when the app is closed
   const tell = m => { if (control && !control.isDestroyed()) control.webContents.send('update', m); };
