@@ -1,0 +1,70 @@
+{
+  "name": "brethren-sunday-school-presenter",
+  "productName": "Brethren Sunday School Presenter",
+  "version": "1.0.0",
+  "description": "Brethren Sunday School Presenter - hymns and Bible for Sunday school",
+  "main": "main.js",
+  "author": "Ovia Media Production",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis --x64 --publish always"
+  },
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "resedit": "^2.0.3"
+  },
+  "build": {
+    "appId": "org.ovia.brethren.sundayschool",
+    "productName": "Brethren Sunday School Presenter",
+    "copyright": "Ovia Media Production",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**",
+      "build/icon.png",
+      "package.json"
+    ],
+    "compression": "normal",
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Brethren Sunday School Presenter",
+      "artifactName": "Brethren-Sunday-School-Presenter-Setup-${version}.${ext}",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "runAfterFinish": true,
+      "uninstallDisplayName": "Brethren Sunday School Presenter"
+    },
+    "afterPack": "build/afterPack.js",
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "shadyonsimos",
+        "repo": "brethren-sunday-school-presenter",
+        "releaseType": "release"
+      }
+    ]
+  },
+  "dependencies": {
+    "electron-updater": "^6.8.11"
+  }
+}

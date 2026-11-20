@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html dir="rtl"><head><meta charset="utf-8"><title>شاشة العرض</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+html,body{margin:0;height:100%;background:#000;color:#fff;overflow:hidden;cursor:none;user-select:none}
+#d{position:absolute;inset:0}#d svg{width:100%;height:100%}
+#t{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:11vh 10vw;font-family:var(--f),sans-serif;font-size:calc(var(--s,1) * 8vh);font-weight:700;line-height:1.95}
+#t.th-bible{font-family:var(--fb),serif;font-size:calc(var(--s,1) * 6.5vh);font-weight:600;line-height:2}
+body.th-w{background:#fff}body.th-w #t{color:#111}
+body.th-b,body.th-bible{background:#000}
+.vn{position:absolute;top:3.5vh;left:4vw;font-family:"K Baloo",sans-serif;font-weight:800;font-size:3.6vh;color:#111;background:linear-gradient(transparent 12%,#ffff00 12%,#ffff00 92%,transparent 92%);padding:0 1.2vh;z-index:2}
+.r{font-size:.55em;color:#ffd27f;margin-top:1.1em;font-family:"K Baloo",sans-serif}
+#t.nw .ln{white-space:nowrap}
+#t:not(.nw) .ln{text-wrap:balance}
+</style></head>
+<body><div id="d"></div><div id="t"></div>
+<script>
+const t = document.getElementById('t'), dd = document.getElementById('d');
+function paint(s) {
+  t.className = ''; document.body.className = ''; document.body.style.background = ''; dd.innerHTML = ''; document.querySelectorAll('.vn').forEach(x => x.remove());
+  if (!s || s.end) { t.innerHTML = ''; return; }
+  t.classList.add('th-' + s.theme); document.body.className = 'th-' + s.theme;
+    dd.innerHTML = s.deco || '';
+  if (s.bg) { document.body.style.background = s.bg; t.style.color = s.fg; } else t.style.color = '';
+  if (s.num) { const v = document.createElement('span'); v.className = 'vn'; v.textContent = s.num; document.body.appendChild(v); }
+  t.innerHTML = `<div class="tx">${s.html}</div>`;
+}
+let FILL = true, SCALE = 1;
+const over = () => t.scrollHeight > t.clientHeight + 2 || t.scrollWidth > t.clientWidth + 2;
+function fit() {
+  t.style.fontSize = '';
+  if (!t.textContent.trim()) return;
+  const base = parseFloat(getComputedStyle(t).fontSize);
+  // keep every hymn line on one line when that still leaves the words big; otherwise let long lines wrap
+  t.classList.toggle('nw', !!t.querySelector('.ln'));
+  const big = () => { let lo = 0.3, hi = 3; for (let i = 0; i < 14; i++) { const m = (lo + hi) / 2; t.style.fontSize = (base * m) + 'px'; if (over()) hi = m; else lo = m; } return lo; };
+  if (!FILL) { let k = 1; while (k > 0.45 && over()) { k -= 0.05; t.style.fontSize = (base * k) + 'px'; } if (k < 0.7 && t.classList.contains('nw')) { t.classList.remove('nw'); t.style.fontSize = ''; k = 1; while (k > 0.45 && over()) { k -= 0.05; t.style.fontSize = (base * k) + 'px'; } } return; }
+  let lo = big();
+  if (t.classList.contains('nw') && lo < 0.55) { t.classList.remove('nw'); lo = big(); }
+  const k = Math.min(lo * 0.9, 1.4) * Math.min(1, SCALE);
+  t.style.fontSize = (base * k) + 'px';
+}
+window.addEventListener('resize', fit);
+window.bp.on('slide', s => { paint(s); fit(); });
+window.bp.on('style', st => { FILL = st.fill !== false; SCALE = st.scale || 1; const r = document.documentElement.style; r.setProperty('--f', `"${st.font}"`); r.setProperty('--fb', `"${st.fontB || 'K Naskh'}"`); r.setProperty('--s', st.scale); document.fonts.ready.then(() => setTimeout(fit, 50)); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { window.bp.toggleOutputFullscreen(); return; }
+  window.bp.key({ key: e.key, code: e.code });
+  if (e.code === 'Space') e.preventDefault();
+});
+document.addEventListener('dblclick', () => window.bp.toggleOutputFullscreen());
+</script></body></html>

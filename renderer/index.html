@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<title>Brethren Sunday School Presenter</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+:root{--bg:#fbfaf7;--panel:#fff;--soft:#f6f5f2;--line:#b9b9b9;--line2:#e6e4df;--txt:#111;--mut:#7a7a7a;--hi:#ffff00;--live:#111;--ui:"K Baloo","K Cairo",sans-serif}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:var(--ui);font-size:16px;display:grid;grid-template-rows:auto 1fr;overflow:hidden;user-select:none;cursor:default}
+button,input,select{font-family:inherit;font-size:inherit;color:inherit}
+input,select{user-select:text}
+button{cursor:pointer}
+.ic{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.hl{background:linear-gradient(transparent 18%,var(--hi) 18%,var(--hi) 88%,transparent 88%);padding:0 6px}
+
+/* top bar */
+.top{display:flex;align-items:center;gap:10px;padding:10px 18px;background:var(--panel);border-bottom:2px dashed var(--line);-webkit-app-region:drag;position:relative;z-index:10}
+.top button,.top .pop{-webkit-app-region:no-drag}
+.mac .top{padding-left:86px}
+.top .deco{position:absolute;inset:0;width:100%;height:100%;opacity:.9;pointer-events:none}
+.brand{position:relative;font-weight:800;font-size:21px;margin-left:8px}
+.brand small{display:block;font-size:12px;color:var(--mut);font-weight:600;line-height:1.1}
+.spacer{flex:1}
+.btn{position:relative;display:inline-flex;align-items:center;gap:8px;justify-content:center;background:#fff;border:2px solid var(--line2);border-radius:14px;padding:7px 15px;font-weight:700}
+.btn:hover{border-color:var(--line)}
+.btn.on{background:var(--hi);border-color:#111}
+.btn.dark{background:#111;border-color:#111;color:#fff}
+
+/* layout */
+main{display:grid;grid-template-columns:330px 1fr 440px;gap:14px;padding:14px;min-height:0}
+.col{display:flex;flex-direction:column;min-height:0;background:var(--panel);border-radius:14px;border:2px dashed var(--line);overflow:hidden}
+.colhead{padding:14px 18px 8px;font-weight:800;font-size:19px;display:flex;align-items:center;gap:10px;min-height:52px}
+
+.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin:12px 12px 8px;border-bottom:2px solid var(--line2)}
+.tabs button{border:0;background:none;padding:6px 0 8px;font-weight:700;color:var(--mut);font-size:14px;white-space:nowrap;position:relative}
+.tabs button.on{color:#111;font-weight:800}
+.tabs button.on span{background:linear-gradient(transparent 20%,var(--hi) 20%,var(--hi) 90%,transparent 90%);padding:0 4px}
+.search{margin:0 12px 8px;position:relative}
+.search input{width:100%;background:var(--soft);border:2px solid var(--line2);border-radius:14px;padding:11px 42px 11px 14px;font-size:17px;outline:none;font-weight:600}
+.search input:focus{border-color:#111;background:#fff}
+.search span{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--mut);display:flex}
+.crumb{margin:0 16px 8px;display:flex;gap:6px;flex-wrap:wrap;font-size:14px}
+.crumb button{background:none;border:0;padding:0;font-weight:800;text-decoration:underline;text-underline-offset:3px}
+.crumb span{color:var(--mut)}
+.list{flex:1;overflow:auto;padding:0 10px 14px}
+.item{display:flex;gap:10px;align-items:center;padding:7px 10px;border-radius:12px;cursor:pointer;border:2px solid transparent}
+.item:hover{background:var(--soft)}.item.sel{border-color:#111;background:#fff}
+.item .t{font-weight:700;line-height:1.55}.item .s{color:var(--mut);font-size:13px;line-height:1.5;font-weight:500}
+.item .no{color:var(--mut);display:flex}
+.item mark{background:var(--hi);color:#111;padding:0 2px}
+.story{margin:0 16px 10px;padding:10px 14px;border:2px dashed var(--line);border-radius:14px;background:#fff}
+.story .sth{font-size:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.story .sth b{font-size:15px}
+.story{cursor:pointer}.story:hover{border-color:#111}
+.story .stref{margin-right:auto;color:var(--mut);font-weight:700;font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.story:hover .stref{color:#111}
+.backbtn{margin-right:auto;font-size:14px;padding:6px 12px;background:var(--hi);border-color:#111}
+.story .stt{font-size:15px;line-height:1.8;font-weight:500}
+.kv{margin:4px 6px 10px;padding:12px 14px;border:2px dashed var(--line);border-radius:14px;cursor:pointer;background:#fff}
+.kv:hover{border-color:#111}
+.kvr{font-weight:800;font-size:14px;margin-bottom:6px}.kvr small{color:var(--mut);font-weight:600;font-size:12px;margin-right:6px}
+.kvt{font-family:"K Naskh",serif;font-size:16px;line-height:1.9}
+.colhead{flex-wrap:wrap}.colhead .tps{display:block;width:100%;color:var(--mut);font-size:13px;font-weight:600;margin-top:2px}
+.letter{font-weight:800;font-size:18px;padding:12px 8px 2px;position:sticky;top:0;background:#fff;z-index:1}
+.letter span{background:linear-gradient(transparent 20%,var(--hi) 20%,var(--hi) 90%,transparent 90%);padding:0 8px}
+.sec{color:var(--mut);font-size:13px;font-weight:800;padding:12px 10px 6px}
+.grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:0 6px}
+.grid button{background:#fff;border:2px solid var(--line2);border-radius:12px;padding:8px 0;font-weight:700}
+.grid button:hover{border-color:#111}
+.empty{color:var(--mut);text-align:center;padding:30px 16px;line-height:1.8;font-weight:600}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:2px 6px 12px}
+.seg button{border:2px solid var(--line2);background:#fff;padding:7px;border-radius:12px;font-weight:700;color:var(--mut)}
+.seg button.on{background:var(--hi);border-color:#111;color:#111}
+.meethead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 6px 8px}
+.meethead b{font-size:14px}.meethead .btn{padding:4px 12px;font-size:13px;white-space:nowrap}
+.item .when{color:var(--mut);font-size:12px;min-width:44px;text-align:left;margin-right:auto}
+
+/* slides */
+.slides{flex:1;overflow:auto;padding:4px 16px 16px;display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));grid-auto-rows:max-content;gap:12px;align-content:start}
+.slide{border-radius:12px;padding:30px 12px 16px;cursor:pointer;min-height:140px;text-align:center;position:relative;border:3px solid var(--line2);font-family:var(--f),sans-serif;font-weight:700;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.slide .tx{font-size:15px;line-height:1.9}
+.slide .lab{position:absolute;top:6px;right:9px;font-size:12px;font-weight:700;font-family:var(--ui);z-index:2}
+.th-w .lab{color:#555}.th-b .lab,.th-bible .lab{color:#bbb}
+.slide.end{min-height:64px;color:#888;font-family:var(--ui);font-size:14px}
+.slide.cue{border:3px dashed #111}
+.slide.onair{border:3px solid #111;box-shadow:0 0 0 3px var(--hi)}
+.slide.onair::after{content:"على الشاشة";position:absolute;top:6px;left:9px;font-size:11px;background:var(--hi);color:#111;padding:0 7px;font-family:var(--ui);z-index:2}
+.th-w{background:#fff;color:#111}.th-b{background:#111;color:#fff;border-color:#111}.th-bible{background:#111;color:#fff;border-color:#111;font-family:var(--fb),serif!important;font-weight:600}
+.slide .r,.screen .r{font-size:.72em;color:#ffd27f;margin-top:6px;font-family:var(--ui)}
+.ln{white-space:nowrap}
+.tx{position:relative;z-index:1}
+.deco{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+
+/* screens */
+.screens{padding:12px 16px 0;display:flex;flex-direction:column;gap:6px}
+.scrlabel{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:15px}
+.scrlabel .ref{color:var(--mut);font-weight:600;font-size:13px;max-width:60%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#e33;margin-left:6px;animation:p 1.6s infinite}
+@keyframes p{50%{opacity:.3}}
+.screen{aspect-ratio:16/9;border-radius:12px;border:3px solid var(--line2);display:flex;align-items:center;justify-content:center;text-align:center;padding:16px 28px;overflow:hidden;position:relative;background:#111;color:#fff;font-family:var(--f),sans-serif;font-weight:700}
+.screen .tx{font-size:18px;line-height:1.9}
+.screen.th-w{background:#fff;color:#111}
+.screen.cueS{border-style:dashed;border-color:#111}.screen.liveS{border-color:#111;box-shadow:0 0 0 3px var(--hi)}
+.screen.th-bible{font-family:var(--fb),serif;font-weight:600}
+.screen .vn{position:absolute;top:8px;left:12px;font-weight:800;font-size:13px;font-family:var(--ui);background:var(--hi);color:#111;padding:0 7px;z-index:2}
+.slide .vn{display:none}
+.screen:empty::before{content:attr(data-empty);color:#777;font-family:var(--ui);font-weight:600;font-size:14px}
+.endlab{color:#999;font-family:var(--ui);font-size:14px}
+.ctrl{display:grid;grid-template-columns:1fr 2fr 1fr;gap:8px;padding:12px 16px 6px}
+.ctrl .btn{padding:11px 6px;font-size:16px}
+.go{background:var(--hi)!important;border-color:#111!important;color:#111;font-size:18px!important;font-weight:800!important}
+.keys{color:var(--mut);font-size:12px;text-align:center;padding:4px 16px 12px;font-weight:600}
+kbd{background:var(--soft);border:1px solid var(--line2);border-radius:6px;padding:0 6px;font-family:inherit}
+
+/* settings */
+.pop{position:absolute;top:62px;left:18px;background:#fff;border:2px dashed var(--line);border-radius:14px;padding:16px;width:320px;box-shadow:0 16px 40px #0002;display:none;z-index:9;max-height:calc(100vh - 90px);overflow:auto}
+.pop.open{display:block}
+.pop h4{margin:0 0 4px;font-size:16px}
+.pop label{display:block;font-size:13px;margin:12px 0 6px;font-weight:800}
+.pop select{width:100%;background:#fff;border:2px solid var(--line2);border-radius:12px;padding:8px;font-weight:600}
+.size{display:flex;align-items:center;gap:10px}.size b{flex:1;text-align:center;font-size:17px}
+.size .btn{width:46px;padding:5px}
+.fprev{margin-top:8px;border-radius:12px;padding:10px;text-align:center;font-weight:700;font-size:20px;line-height:1.9;border:2px solid var(--line2)}
+.fprev.th-bible{border-color:#111}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.chips button{border:2px solid var(--line2);background:#fff;border-radius:12px;padding:7px 4px;font-weight:700;font-size:13px}
+.chips button.on{background:var(--hi);border-color:#111}
+.chips.pairs{grid-template-columns:1fr}
+.chips.pairs button{display:flex;align-items:center;gap:4px;text-align:right}
+.chips.pairs i,.mine i{width:18px;height:18px;border-radius:5px;border:1px solid #0003;display:inline-block}
+.chips.pairs i:nth-child(2){margin-left:6px}
+.chips.designs{grid-template-columns:repeat(4,1fr)}
+.mine{display:flex;gap:6px;margin-top:6px;align-items:center}
+.mine button{flex:1;border:2px solid var(--line2);background:#fff;border-radius:12px;padding:7px 4px;font-weight:700;font-size:13px}
+.mine button.on{background:var(--hi);border-color:#111}
+.mine input{width:44px;height:36px;border:2px solid var(--line2);border-radius:10px;padding:2px;background:#fff;cursor:pointer}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:#111;color:#fff;padding:9px 20px;border-radius:12px;font-weight:700;opacity:0;transition:.25s;pointer-events:none;z-index:20}
+.toast.show{opacity:1;transform:translateX(-50%)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:#ddd;border-radius:10px;border:2px solid #fff}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+ <defs>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.5 1.3 6.5L12 17l-5.9 3.3 1.3-6.5L2.5 9.3l6.6-.8z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></symbol>
+  <symbol id="i-eyeoff" viewBox="0 0 24 24"><path d="M9.9 4.2A10 10 0 0 1 12 4c5 0 9 4.5 10 8a13 13 0 0 1-2.2 3.6M6.6 6.6C4.4 8 2.8 10.1 2 12c1 3.5 5 8 10 8a10 10 0 0 0 5.4-1.6"/><path d="m2 2 20 20"/><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24"><path d="M9.06 11.9l8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/><path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 4l14 8-14 8z" fill="currentColor"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-prev" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+  <symbol id="i-today" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+  <symbol id="i-history" viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></symbol>
+ </defs>
+</svg>
+<div class="top">
+  <div class="brand">ترانيم مدارس الأحد<small dir="ltr">Brethren Sunday School Presenter</small></div>
+  <span class="spacer"></span>
+  <button class="btn" id="updBtn" style="display:none;background:#e7f7ec;border-color:#2fbf71"></button>
+  <button class="btn" id="storyBtn" title="قصة صغيرة من الكتاب المقدس مناسبة لكل ترنيمة"><svg class="ic"><use href="#i-book"/></svg>قصة مقترحة</button>
+  <button class="btn" id="setBtn"><svg class="ic"><use href="#i-brush"/></svg>الشكل والخط</button>
+  <button class="btn" id="blankBtn" title="إخفاء أي كلام من على الشاشة (B)"><svg class="ic"><use href="#i-eyeoff"/></svg>إخفاء الشاشة</button>
+  <button class="btn dark" id="openOut"><svg class="ic"><use href="#i-monitor"/></svg><span id="outLbl">فتح شاشة العرض</span></button>
+
+  <div class="pop" id="pop">
+    <h4>شكل الشاشة</h4>
+    <label>ألوان الشرايح (لونين بيتبادلوا)</label>
+    <div class="chips pairs" id="pairChips"></div>
+    <div class="mine"><button data-pair="custom">ألواني أنا</button><input type="color" id="c1" title="اللون الأول"><input type="color" id="c2" title="اللون التاني"></div>
+    <label>التصميم</label>
+    <div class="chips designs" id="designChips"></div>
+    <label>خط الترانيم</label>
+    <select id="fontSel">
+      <option value="K Baloo">بالو — خط مدارس الأحد (مُستحسن)</option>
+      <option value="K Lemonada">ليموناضة — مدوّر</option>
+      <option value="K Marhey">مرهي — مرح</option>
+      <option value="K Cairo">القاهرة — واضح</option>
+      <option value="K Almarai">المراعي — عريض</option>
+      <option value="K Tajawal">تجوّل — بسيط</option>
+      <option value="K Messiri">المسيري — أنيق</option>
+    </select>
+    <div class="fprev th-w" id="fprev">يسوع بيحبني وأنا بحبه</div>
+    <label>خط الكتاب المقدس (بالتشكيل)</label>
+    <select id="fontBSel">
+      <option value="K Naskh">نسخ — الأوضح بالتشكيل (مُستحسن)</option>
+      <option value="K Amiri">أميري — كلاسيكي</option>
+      <option value="K Scheherazade">شهرزاد — كبير</option>
+      <option value="K Messiri">المسيري</option>
+      <option value="K Cairo">القاهرة</option>
+    </select>
+    <div class="fprev th-bible" id="fbprev">لأَنَّهُ هكَذَا أَحَبَّ اللهُ الْعَالَمَ</div>
+    <label>حجم الكلام</label>
+    <div class="size"><button class="btn" id="szDn">−</button><b id="szVal">100%</b><button class="btn" id="szUp">+</button></div>
+    <button class="btn" id="fillBtn" style="margin-top:8px;width:100%">ملء الشاشة: شغال</button>
+  </div>
+</div>
+
+<main>
+  <section class="col">
+    <div class="tabs">
+      <button data-tab="hymns" class="on"><span>الترانيم</span></button>
+      <button data-tab="bible"><span>الكتاب</span></button>
+      <button data-tab="topics"><span>المواضيع</span></button>
+      <button data-tab="today"><span>النهارده</span></button>
+      <button data-tab="history"><span>السجل</span></button>
+    </div>
+    <div class="search"><span><svg class="ic"><use href="#i-search"/></svg></span><input id="q" type="text" autocomplete="off"></div>
+    <div class="crumb" id="crumb"></div>
+    <div class="list" id="results"></div>
+  </section>
+
+  <section class="col">
+    <div class="colhead" id="curTitle">اختار ترنيمة أو آية من القائمة</div>
+    <div class="story" id="story" style="display:none"></div>
+    <div class="slides" id="slides"></div>
+  </section>
+
+  <section class="col">
+    <div class="screens">
+      <div class="scrlabel"><span>التالي</span><span class="ref" id="cueRef"></span></div>
+      <div class="screen cueS" id="cueScr" data-empty="مفيش حاجة متجهزة"></div>
+      <div class="scrlabel" style="margin-top:6px"><span><span class="dot"></span>على الشاشة الآن</span><span class="ref" id="liveRef"></span></div>
+      <div class="screen liveS" id="liveScr" data-empty="الشاشة فاضية"></div>
+    </div>
+    <div class="ctrl">
+      <button class="btn" id="nextBtn">التالي<svg class="ic"><use href="#i-next"/></svg></button>
+      <button class="btn go" id="playBtn"><svg class="ic"><use href="#i-play"/></svg>اعرض على الشاشة</button>
+      <button class="btn" id="prevBtn"><svg class="ic"><use href="#i-prev"/></svg>السابق</button>
+    </div>
+    <div class="keys"><kbd>مسافة</kbd> اعرض · <kbd>←</kbd><kbd>→</kbd> قلّب · <kbd>B</kbd> إخفاء</div>
+  </section>
+</main>
+<div class="toast" id="toast"></div>
+
+<script src="data/hymns.js"></script>
+<script src="data/topics.js"></script>
+<script src="data/stories.js"></script>
+<script src="data/bible.js"></script>
+<script src="books.js"></script>
+<script src="engine.js"></script>
+<script src="deco.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
