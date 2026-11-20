@@ -99,6 +99,9 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
 @keyframes ck{from{transform:scale(.3);opacity:1}to{transform:scale(1.6);opacity:0}}
 .caption{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);background:#111;color:#fff;font-weight:800;font-size:22px;padding:8px 22px;border-radius:14px;z-index:15;white-space:nowrap}
 .caption b{color:var(--hi)}
+.mcap{display:none;margin:10px auto 0;background:#111;color:#fff;font-weight:800;font-size:19px;padding:8px 16px;border-radius:12px;max-width:94%;min-height:46px}
+.mcap b{color:var(--hi)}
+@media (max-width:700px){.caption{display:none}.mcap{display:block}}
 </style>
 </head>
 <body><div class="w">
@@ -139,6 +142,8 @@ mark{background:var(--hi);color:inherit;padding:0 2px;border-radius:3px}
   <div class="caption" id="cap">ترانيم مدارس الأحد</div>
  </div>
 </div>
+
+<div class="mcap" id="mcap">ترانيم مدارس الأحد</div>
 
 <h1>Brethren Sunday School Presenter<small>ترانيم مدارس الأحد</small></h1>
 <p>برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.</p>
@@ -189,7 +194,7 @@ const HY = [
   { t: 'محبة قوية دايماً ليَّ', s: 'قبل الكون وقبل الدنيا' },
   { t: 'محبة ربي بتدوب قلبي', s: 'دي محبة عجيبة وماليها نظير' }
 ];
-const cap = html => { $('cap').innerHTML = html; };
+const cap = html => { $('cap').innerHTML = html; $('mcap').innerHTML = html; };
 function cursorTo(el, dx = 0.5, dy = 0.5) {
   const r = el.getBoundingClientRect(), s = stage.getBoundingClientRect();
   cx = (r.left - s.left + r.width * dx) / S; cy = (r.top - s.top + r.height * dy) / S;
