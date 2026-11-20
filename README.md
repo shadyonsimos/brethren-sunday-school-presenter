@@ -2,6 +2,8 @@
 
 ترانيم مدارس الأحد — برنامج عرض الترانيم والكتاب المقدس لمدارس الأحد. مجاني للكنائس.
 
+📄 **طريقة التسطيب بالصور (PDF):** [How-to-Install.pdf](How-to-Install.pdf)
+
 **التحميل:** من صفحة [Releases](../../releases/latest) نزّل ملف `Brethren-Sunday-School-Presenter-Setup-x.y.z.exe` وشغّله.
 أول مرة ممكن ويندوز يقول "Windows protected your PC" → اضغط **More info** ثم **Run anyway**.
 البرنامج بيحدّث نفسه لوحده لما تنزل نسخة جديدة.
