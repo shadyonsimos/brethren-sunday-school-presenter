@@ -1,6 +1,6 @@
 <div dir="rtl">
 
-# ترانيم مدارس الأحد
+# Brethren Sunday School Presenter - ترانيم مدارس الأحد
 
 <bdi>Brethren Sunday School Presenter</bdi> — برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.
 
