@@ -6,7 +6,7 @@
 
 📄 **طريقة التسطيب بالصور:** [<bdi>How-to-Install.pdf</bdi>](How-to-Install.pdf)
 
-**التحميل:** من صفحة [التحميل](../../releases/latest) نزّل أول ملف (اللي آخره <bdi>.exe</bdi>) وشغّله.
+**التحميل:** من صفحة [التحميل](../../releases/latest) نزّل أول ملف — اسمه بيبدأ بـ <code>Brethren-Sunday-School-Presenter-Setup</code> — وشغّله.
 
 لو ظهرت شاشة زرقا: دوس <bdi><b>More info</b></bdi> وبعدين <bdi><b>Run anyway</b></bdi> (أول مرة بس).
 
