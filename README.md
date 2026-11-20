@@ -2,6 +2,10 @@
 
 # Brethren Sunday School Presenter - ترانيم مدارس الأحد
 
+![Brethren Sunday School Presenter](docs/preview.png)
+
+## ⬇️ [اضغط هنا للتحميل](../../releases/latest)
+
 <bdi>Brethren Sunday School Presenter</bdi> — برنامج مجاني لعرض ترانيم مدارس الأحد والكتاب المقدس على البروجكتور.
 
 📄 **طريقة التسطيب بالصور:** [<bdi>How-to-Install.pdf</bdi>](How-to-Install.pdf)
